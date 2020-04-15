@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 set(var hello)
-#打印信息
+#打印信息 测试
 message(${var})
 
 set(var 111)
