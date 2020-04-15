@@ -9,7 +9,6 @@ set(var hello)
 #打印信息
 message(${var})
 
-
 set(var 111)
 message(${var})
 
