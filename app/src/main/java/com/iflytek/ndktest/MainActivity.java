@@ -3,14 +3,20 @@ package com.iflytek.ndktest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.iflytek.ndktest.jni.TestJni;
 
 public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
+        System.loadLibrary("people-lib");
     }
+
+    private TestJni testJni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         // Example of a call to a native method
         TextView tv = findViewById(R.id.sample_text);
         tv.setText(stringFromJNI());
+        testJni = new TestJni();
+        String s =testJni.getA();
+    }
+
+    public void test() {
+        Log.e("ylli10", "test: ");
     }
 
     /**
@@ -27,4 +39,6 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+
+    public native String getA();
 }
