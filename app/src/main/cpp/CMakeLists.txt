@@ -9,6 +9,11 @@ project(NdkTest)
 #设置生成的so文件路径
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/../../jniLibs/${ANDROID_ABI})
 
+#路径地址 D:/MyAndroidStudioWork/NdkTest/app/.cxx/cmake/debug/arm64-v8a
+#set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+
+message(${PROJECT_BINARY_DIR})
+
 message(${PROJECT_SOURCE_DIR}/../../jniLibs/${ANDROID_ABI})
 
 IF (TRUE)
@@ -50,6 +55,20 @@ add_library(
         include/people.cpp
 )
 
+#举例 依赖第三方库 注意后面是IMPORTED
+#添加第三方库
+#add_library(
+#        libdfmlp
+#        SHARED
+#        IMPORTED)
+#配置第三方库连接
+#set_target_properties(
+#        libdfmlp
+#        PROPERTIES IMPORTED_LOCATION
+#        ${CMAKE_SOURCE_DIR}/../jniLibs/${CMAKE_ANDROID_ARCH_ABI}/libdfmlp.so
+#        )
+
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -75,7 +94,8 @@ target_link_libraries( # Specifies the target library.
         # included in the NDK.
         ${log-lib})
 
-#每个so库使用log的时候，都需要进行关联
+#每个so库使用log的时候，都需要进行关联 
+#链接静态库需要的依赖库
 target_link_libraries( # Specifies the target library.
         #这里链接的是生成的动态库的名称，不是.cpp文件的名称
         people-lib
