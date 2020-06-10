@@ -55,6 +55,11 @@ add_library(
         include/people.cpp
 )
 
+add_library(Test_dynamic
+        SHARED
+        Test_dynamic.cpp
+        )
+
 #举例 依赖第三方库 注意后面是IMPORTED
 #添加第三方库
 #add_library(
@@ -99,6 +104,12 @@ target_link_libraries( # Specifies the target library.
 target_link_libraries( # Specifies the target library.
         #这里链接的是生成的动态库的名称，不是.cpp文件的名称
         people-lib
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
+target_link_libraries( # Specifies the target library.
+        #这里链接的是生成的动态库的名称，不是.cpp文件的名称
+        Test_dynamic
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})

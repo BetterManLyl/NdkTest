@@ -24,6 +24,7 @@ Java_com_iflytek_ndktest_jni_TestJni_getA(JNIEnv *env, jobject thiz) {
     // TODO: implement getA()
     LOGD("success");
 
+    
     jclass jclass1 = env->GetObjectClass(thiz);
     jmethodID jmethodId = env->GetMethodID(jclass1, "test", "()V");
     jmethodID jmethodId1 = env->GetMethodID(jclass1, "show", "(Ljava/lang/String;)V");
